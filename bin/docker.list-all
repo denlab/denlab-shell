@@ -1,0 +1,6 @@
+#!/bin/bash -xe
+
+docker images
+docker ps --all
+docker volume ls
+docker network ls

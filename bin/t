@@ -1,0 +1,21 @@
+#!/bin/bash -e
+
+LINES=$(tput lines)
+MAX_LINES=$(($LINES-1))
+
+DEPTH=1
+PREV_LINES=0
+ACTUAL_LINES=$(tree -C -L $DEPTH | wc -l)
+while [[ $ACTUAL_LINES -lt $MAX_LINES ]] && [[ $PREV_LINES -ne $ACTUAL_LINES ]]
+do
+    DEPTH=$(($DEPTH + 1))
+    PREV_LINES=$ACTUAL_LINES
+    ACTUAL_LINES=$(tree -C -L $DEPTH | wc -l)
+done
+
+if [[ $ACTUAL_LINES -gt $MAX_LINES ]] && [[ $DEPTH -gt 1 ]]
+then
+    DEPTH=$(($DEPTH -1))
+fi
+
+tree -C -L $DEPTH
