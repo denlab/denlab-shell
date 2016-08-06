@@ -1,0 +1,45 @@
+#!/bin/bash -xe
+
+LOG_INDENT=""
+
+function log_indent_inc() {
+    LOG_INDENT="$LOG_INDENT""\t"
+}
+
+function log_indent_dec() {
+    LOG_INDENT=$(echo "$LOG_INDENT" | sed 's/\(.*\).$/\1/g')
+}
+
+function log_begin() {
+    echo -e "$LOG_INDENT""$1"
+    log_indent_inc
+}
+
+function log_end() {
+    log_indent_dec
+    echo -e "$LOG_INDENT""$1"
+}
+
+function log() {
+    echo -e "$LOG_INDENT""$1"
+}
+
+log_begin "bashrc-addons"
+
+log "add bin to PATH"
+if [[ $PATH != *"$HOME/bin"* ]]
+then
+    export PATH=$PATH:"$HOME/bin"
+fi
+
+log "general env vars"
+export EDITOR='emacsclient -nw'
+
+log "setup aliases"
+alias em='emacsclient -nw'
+alias gl='git log --graph --all --oneline --decorate'
+
+log "setup java"
+export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
+
+. ./.bashrc-addons.local
