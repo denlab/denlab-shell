@@ -36,6 +36,7 @@ log "general env vars"
 export EDITOR='emacsclient -nw'
 
 log "setup aliases"
+unalias l
 alias em='emacsclient -nw'
 alias gl='git log --graph --all --oneline --decorate'
 
