@@ -29,7 +29,7 @@ values."
      git
      markdown
      shell-scripts
-     ;; org
+     org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
