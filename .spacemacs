@@ -31,6 +31,7 @@ values."
      shell-scripts
      org
      ansible
+     dockerfile
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
