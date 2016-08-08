@@ -1,0 +1,8 @@
+| category | action                    | key-binding |
+|----------+---------------------------+-------------|
+|          | neotree-toggle            | M-m f t     |
+|          | neotree-find-project-root | M-m p t     |
+| theme    | switch to next theme      | M-m T n     |
+
+
+ 
