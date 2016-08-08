@@ -256,7 +256,9 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (set-face-background 'default "color-16")
   (global-auto-complete-mode)
-  )
+  ( spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "ht" 'org-insert-todo-subheading
+    "hT" 'org-insert-todo-heading)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
