@@ -1,8 +1,40 @@
-| category | action                    | key-binding |
-|----------+---------------------------+-------------|
-|          | neotree-toggle            | M-m f t     |
-|          | neotree-find-project-root | M-m p t     |
-| theme    | switch to next theme      | M-m T n     |
+| category  | action                                  | key-binding | note       |
+|-----------+-----------------------------------------+-------------+------------|
+|           | neotree-toggle                          | M-m f t     |            |
+|           | neotree-find-project-root               | M-m p t     |            |
+|-----------+-----------------------------------------+-------------+------------|
+| theme     | switch to next theme                    | M-m T n     |            |
+|-----------+-----------------------------------------+-------------+------------|
+| file      | save all buffers                        | M-m f S     |            |
+|           | save a buffer                           | M-m f s     |            |
+|-----------+-----------------------------------------+-------------+------------|
+| org       | org-demote-subtree                      | M-RET S l   |            |
+|           | org-promote-subtree                     | M-RET S h   |            |
+|           |                                         |             |            |
+|           | org-insert-heading-after-current        | M-RET h i   |            |
+|           | org-insert-heading                      | M-RET h I   |            |
+|           | org-insert-todo-subheading              | NONE        |            |
+|           | org-insert-todo-heading                 | C-c C-x M   |            |
+| org/misc  | org-insert-todo-heading-respect-content | C-S-return  | don't work |
+|           | org-table-insert-row                    | M-RET t i r |            |
+|           | org-set-tag                             | M-m m :     |            |
+|-----------+-----------------------------------------+-------------+------------|
+| emacs     | spacemacs/describe-last-keys            | M-m h d l   |            |
+|-----------+-----------------------------------------+-------------+------------|
+|           | spacemacs/evil-insert-line-below        | M-m i j     |            |
+|-----------+-----------------------------------------+-------------+------------|
+| magit     | dis                                     |             |            |
+|-----------+-----------------------------------------+-------------+------------|
+| spacemacs | open .spacemacs                         |             |            |
 
 
- 
+* DONE todo [100%]
+CLOSED: [2016-08-08 lun. 22:17]
+** spacemacs documentation : 11.1
+** DONE emacs [25%]
+CLOSED: [2016-08-08 lun. 22:16]
+*** DONE bind [100%]
+CLOSED: [2016-08-08 lun. 22:16]
+**** DONE org-insert-todo-subheading 
+CLOSED: [2016-08-08 lun. 22:16]
+
