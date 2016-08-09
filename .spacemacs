@@ -259,6 +259,7 @@ you should place your code here."
   ( spacemacs/set-leader-keys-for-major-mode 'org-mode
     "ht" 'org-insert-todo-subheading
     "hT" 'org-insert-todo-heading)
+)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
