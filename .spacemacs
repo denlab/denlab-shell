@@ -108,7 +108,106 @@ values."
                          solarized-light
                          solarized-dark
                          leuven
-                         zenburn)
+                         zenburn
+                         ;; TODO to try first
+                         ;; TODO to try 
+                         afternoon
+                         alect-black
+                         alect-black-alt
+                         alect-dark
+                         alect-dark-alt
+                         ample
+                         ample-flat
+                         ample-zen
+                         apropospriate-dark
+                         birds-of-paradise-plus
+                         brin
+                         bubbleberry
+                         busybee
+                         clues
+                         dakrone
+                         darkburn
+                         darkmine
+                         darktooth
+                         deeper-blue
+                         django
+                         dorsey
+                         firebelly
+                         fogus
+                         gotham
+                         grandshell
+                         granger
+                         gruber-darker
+                         hc-zenburn
+                         hemisu-dark
+                         heroku
+                         hickey
+                         inkpot
+                         ir-black
+                         jazz
+                         jbeans
+                         material
+                         minimal
+                         misterioso
+                         monochrome
+                         mustang
+                         noctilux
+                         obsidian
+                         odersky
+                         pastels-on-dark
+                         phoenix-dark-mono
+                         phoenix-dark-pink
+                         planet
+                         purple-haze
+                         sanityinc-tomorrow-bright
+                         sanityinc-tomorrow-eighties
+                         sanityinc-tomorrow-night
+                         smyx
+                         soft-charcoal
+                         soothe
+                         spacegray
+                         stekene-dark
+                         subatomic
+                         subatomic256
+                         tango-2
+                         tango-dark
+                         tao-yin
+                         tsdh-dark
+                         twilight
+                         twilight-anti-bright
+                         ujelly
+                         underwater
+                         wheatgrass
+                         wilson
+                         wombat
+                         zen-and-art
+                         zenburn
+                         ;; DONE favorites tried KO
+                         cyberpunk
+                         monokai
+                         badwolf
+                         cherry-blossom
+                         colorsarenice-dark
+                         farmhouse-dark
+                         flatland
+                         grandshell
+                         gruvbox
+                         junio
+                         lush
+                         manoj-dark
+                         molokai
+                         naquadah
+                         niflheim
+                         reverse
+                         seti
+                         spolsky
+                         tangotango
+                         toxi
+                         tronesque
+                         zonokai-blue
+                         ;; DONE tried OK
+                         spacemacs-dark
+)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
