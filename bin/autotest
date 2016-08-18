@@ -69,7 +69,7 @@ function echo-wait {
     line-msg-left "waiting for modications ..."
 }
 
-CMD=${1:-'./run.sh'}
+CMD=${@-'./run.sh'}
 
 while true
 do
