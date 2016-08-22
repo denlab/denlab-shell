@@ -7,6 +7,7 @@
 |-----------+-----------------------------------------+-------------+------------|
 | file      | save all buffers                        | M-m f S     |            |
 |           | save a buffer                           | M-m f s     |            |
+|           | helm-projectile-recentf                 | M-m p r     |            |
 |-----------+-----------------------------------------+-------------+------------|
 | org       | org-demote-subtree                      | M-RET S l   |            |
 |           | org-promote-subtree                     | M-RET S h   |            |
@@ -26,17 +27,18 @@
 | magit     | dis                                     |             |            |
 |-----------+-----------------------------------------+-------------+------------|
 | spacemacs | open .spacemacs                         |             |            |
+|           | helm-spacemacs open doc                 | M-m h SPC   |            |
 |-----------+-----------------------------------------+-------------+------------|
 | doc       | view ansible doc                        | M-m m a ?   |            |
 
 
-* DONE todo [100%]
+* DONE todo [50%]
 CLOSED: [2016-08-08 lun. 22:17]
 ** spacemacs documentation : 11.1
-** DONE emacs [25%]
+** DONE emacs [100%]
 CLOSED: [2016-08-08 lun. 22:16]
 *** DONE bind [100%]
 CLOSED: [2016-08-08 lun. 22:16]
 **** DONE org-insert-todo-subheading 
 CLOSED: [2016-08-08 lun. 22:16]
-
+** TODO spacemacs online documentation [%]
