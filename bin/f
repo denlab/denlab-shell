@@ -1,0 +1,9 @@
+#!/bin/bash -xeu
+
+set -o pipefail
+
+IN="$@"
+
+SEARCH_STR="*"$(echo $IN | sed 's/ /*/g')"*"
+
+find . -iname "$SEARCH_STR"
