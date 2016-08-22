@@ -34,6 +34,7 @@ values."
      dockerfile
      version-control
      themes-megapack
+     search-engine
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
