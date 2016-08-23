@@ -17,10 +17,15 @@
 |           | org-insert-todo-subheading              | NONE        |            |
 |           | org-insert-todo-heading                 | C-c C-x M   |            |
 | org/misc  | org-insert-todo-heading-respect-content | C-S-return  | don't work |
-|           | org-table-insert-row                    | M-RET t i r |            |
 |           | org-set-tag                             | M-m m :     |            |
+| org/table |                                         |             |            |
+|           | org-table-insert-row                    | M-RET t i r |            |
+|           | org-table-toggle-coordinate-overlays    | C-c }       |            |
+|           | recalculate table                       | C-u C-c C-c |            |
 |-----------+-----------------------------------------+-------------+------------|
 | emacs     | spacemacs/describe-last-keys            | M-m h d l   |            |
+|           | repeat last command                     | C-x z       |            |
+|           | go back                                 | C-u C-SPC   |            |
 |-----------+-----------------------------------------+-------------+------------|
 |           | spacemacs/evil-insert-line-below        | M-m i j     |            |
 |-----------+-----------------------------------------+-------------+------------|
@@ -32,8 +37,7 @@
 | doc       | view ansible doc                        | M-m m a ?   |            |
 
 
-* DONE todo [50%]
-CLOSED: [2016-08-08 lun. 22:17]
+* TODO todo [66%]
 ** spacemacs documentation : 11.1
 ** DONE emacs [100%]
 CLOSED: [2016-08-08 lun. 22:16]
@@ -42,3 +46,5 @@ CLOSED: [2016-08-08 lun. 22:16]
 **** DONE org-insert-todo-subheading 
 CLOSED: [2016-08-08 lun. 22:16]
 ** TODO spacemacs online documentation [%]
+** DONE map avy goto-char to C-o
+CLOSED: [2016-08-23 mar. 15:34]
