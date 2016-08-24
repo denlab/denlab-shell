@@ -27,6 +27,7 @@
 |           | repeat last command                     | C-x z       |            |
 |           | go back                                 | C-u C-SPC   |            |
 |           | er/expand-region                        | M-m v       |            |
+| emacs/nav | spacemacs/alternate-buffer              | M-m TAB     |            |
 |-----------+-----------------------------------------+-------------+------------|
 |           | spacemacs/evil-insert-line-below        | M-m i j     |            |
 |-----------+-----------------------------------------+-------------+------------|
@@ -35,11 +36,12 @@
 | spacemacs | open .spacemacs                         |             |            |
 |           | helm-spacemacs open doc                 | M-m h SPC   |            |
 |           | reload .spacemacs                       | M-m f e R   |            |
+|           | lorem ipsum                             |             |            |
 |-----------+-----------------------------------------+-------------+------------|
 | doc       | view ansible doc                        | M-m m a ?   |            |
 
 
-* TODO todo [66%]
+* TODO todo [50%]
 ** spacemacs documentation : 11.1
 ** DONE emacs [100%]
 CLOSED: [2016-08-08 lun. 22:16]
@@ -50,3 +52,4 @@ CLOSED: [2016-08-08 lun. 22:16]
 ** TODO spacemacs online documentation [%]
 ** DONE map avy goto-char to C-o
 CLOSED: [2016-08-23 mar. 15:34]
+** TODO enable autocompletion for all buffers
