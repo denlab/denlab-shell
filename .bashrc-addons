@@ -43,4 +43,7 @@ alias gl='git log --graph --all --oneline --decorate'
 log "setup java"
 [ -n "$(which java)" ] && export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
 
+log "setup autojump"
+. /usr/share/autojump/autojump.sh 
+
 . ./.bashrc-addons.local
