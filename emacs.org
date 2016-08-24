@@ -26,6 +26,7 @@
 | emacs     | spacemacs/describe-last-keys            | M-m h d l   |            |
 |           | repeat last command                     | C-x z       |            |
 |           | go back                                 | C-u C-SPC   |            |
+|           | er/expand-region                        | M-m v       |            |
 |-----------+-----------------------------------------+-------------+------------|
 |           | spacemacs/evil-insert-line-below        | M-m i j     |            |
 |-----------+-----------------------------------------+-------------+------------|
@@ -33,6 +34,7 @@
 |-----------+-----------------------------------------+-------------+------------|
 | spacemacs | open .spacemacs                         |             |            |
 |           | helm-spacemacs open doc                 | M-m h SPC   |            |
+|           | reload .spacemacs                       | M-m f e R   |            |
 |-----------+-----------------------------------------+-------------+------------|
 | doc       | view ansible doc                        | M-m m a ?   |            |
 
