@@ -1,55 +1,113 @@
-| category  | action                                  | key-binding | note       |
-|-----------+-----------------------------------------+-------------+------------|
-|           | neotree-toggle                          | M-m f t     |            |
-|           | neotree-find-project-root               | M-m p t     |            |
-|-----------+-----------------------------------------+-------------+------------|
-| theme     | switch to next theme                    | M-m T n     |            |
-|-----------+-----------------------------------------+-------------+------------|
-| file      | save all buffers                        | M-m f S     |            |
-|           | save a buffer                           | M-m f s     |            |
-|           | helm-projectile-recentf                 | M-m p r     |            |
-|-----------+-----------------------------------------+-------------+------------|
-| org       | org-demote-subtree                      | M-RET S l   |            |
-|           | org-promote-subtree                     | M-RET S h   |            |
-|           |                                         |             |            |
-|           | org-insert-heading-after-current        | M-RET h i   |            |
-|           | org-insert-heading                      | M-RET h I   |            |
-|           | org-insert-todo-subheading              | NONE        |            |
-|           | org-insert-todo-heading                 | C-c C-x M   |            |
-| org/misc  | org-insert-todo-heading-respect-content | C-S-return  | don't work |
-|           | org-set-tag                             | M-m m :     |            |
-| org/table |                                         |             |            |
-|           | org-table-insert-row                    | M-RET t i r |            |
-|           | org-table-toggle-coordinate-overlays    | C-c }       |            |
-|           | recalculate table                       | C-u C-c C-c |            |
-|-----------+-----------------------------------------+-------------+------------|
-| emacs     | spacemacs/describe-last-keys            | M-m h d l   |            |
-|           | repeat last command                     | C-x z       |            |
-|           | go back                                 | C-u C-SPC   |            |
-|           | er/expand-region                        | M-m v       |            |
-| emacs/nav | spacemacs/alternate-buffer              | M-m TAB     |            |
-|-----------+-----------------------------------------+-------------+------------|
-|           | spacemacs/evil-insert-line-below        | M-m i j     |            |
-|-----------+-----------------------------------------+-------------+------------|
-| magit     | dis                                     |             |            |
-|-----------+-----------------------------------------+-------------+------------|
-| spacemacs | open .spacemacs                         |             |            |
-|           | helm-spacemacs open doc                 | M-m h SPC   |            |
-|           | reload .spacemacs                       | M-m f e R   |            |
-|           | lorem ipsum                             |             |            |
-|-----------+-----------------------------------------+-------------+------------|
-| doc       | view ansible doc                        | M-m m a ?   |            |
+| category       | action                                  | key-binding               | note       |
+|----------------+-----------------------------------------+---------------------------+------------|
+|                | neotree-toggle                          | M-m f t                   |            |
+|                | neotree-find-project-root               | M-m p t                   |            |
+|----------------+-----------------------------------------+---------------------------+------------|
+| theme          | switch to next theme                    | M-m T n                   |            |
+|----------------+-----------------------------------------+---------------------------+------------|
+| file           | save all buffers                        | M-m f S                   |            |
+|                | save a buffer                           | M-m f s                   |            |
+|                | helm-projectile-recentf                 | M-m p r                   |            |
+|----------------+-----------------------------------------+---------------------------+------------|
+| org            | org-demote-subtree                      | M-RET S l                 |            |
+|                | org-promote-subtree                     | M-RET S h                 |            |
+|                |                                         |                           |            |
+|                | org-open-at-point                       | M-RET l, M-m m l, C-c C-o |            |
+|                |                                         |                           |            |
+|                | org-insert-heading-after-current        | M-RET h i                 |            |
+|                | org-insert-heading                      | M-RET h I                 |            |
+|                | org-insert-todo-subheading              | NONE                      |            |
+|                | org-insert-todo-heading                 | C-c C-x M                 |            |
+| org/misc       | org-insert-todo-heading-respect-content | C-S-return                | don't work |
+|                | org-set-tag                             | M-m m :                   |            |
+| org/table      |                                         |                           |            |
+|                | org-table-insert-row                    | M-RET t i r               |            |
+|                | org-table-toggle-coordinate-overlays    | C-c }                     |            |
+|                | recalculate table                       | C-u C-c C-c               |            |
+|                | org-table-edit-field                    | C-`                       |            |
+|                |                                         |                           |            |
+|----------------+-----------------------------------------+---------------------------+------------|
+| emacs          | spacemacs/describe-last-keys            | M-m h d l                 |            |
+|                | repeat last command                     | C-x z                     |            |
+|                | go back                                 | C-u C-SPC                 |            |
+|                | er/expand-region                        | M-m v                     |            |
+| emacs/nav      | spacemacs/alternate-buffer              | M-m TAB                   |            |
+|                | avy-goto-line                           | M-m y                     |            |
+|                | avy-pop-mark                            | M-m `                     |            |
+|                | jump to definition                      |                           |            |
+| emacs/misc     | command-history                         | <NONE>                    |            |
+|                | ispell-word                             | M-$                       |            |
+|----------------+-----------------------------------------+---------------------------+------------|
+|                | spacemacs/evil-insert-line-below        | M-m i j                   |            |
+|----------------+-----------------------------------------+---------------------------+------------|
+| magit          | dis                                     |                           |            |
+|----------------+-----------------------------------------+---------------------------+------------|
+| spacemacs      | open .spacemacs                         | M-m f e d                 |            |
+|                | helm-spacemacs open doc                 | M-m h SPC                 |            |
+|                | reload .spacemacs                       | M-m f e R                 |            |
+|                | lorem ipsum                             |                           |            |
+|----------------+-----------------------------------------+---------------------------+------------|
+| doc            | view ansible doc                        | M-m m a ?                 |            |
+|----------------+-----------------------------------------+---------------------------+------------|
+| helm           | show helm help                          | C-c ?                     |            |
+|                | helm-mini                               | M-m b b                   |            |
+|                | content contains: @<content>            |                           |            |
+|                | show occurrences of @<content>          | C-s                       |            |
+|                |                                         |                           |            |
+|                | helm-resume                             | M-m h l                   |            |
+|                |                                         |                           |            |
+|                | helm-find-files                         | M-m f F                   |            |
+| helpprojectile | helm-projectile-grep                    | M-m s g p                 |            |
+|                |                                         |                           |            |
+|                | clear persistent search highlighting    | M-m s c                   |            |
 
+* TODO tools [0%]
 
-* TODO todo [50%]
-** spacemacs documentation : 11.1
-** DONE emacs [100%]
+** TODO firco
+
+*** TODO bookmarks 
+
+**** TODO get chrome history in bookmarks
+
+#!/bin/bash
+
+# Locate the history file in your profile, and copy it to the same folder as this script.
+# On Mac: ~/Library/Application\ Support/Google/Chrome/Default/History
+# On Windows: C:\Users\YOUR USER NAME\AppData\Local\Google\Chrome\User Data\Default\History
+
+sqlite3 History <<!
+.headers on
+.mode csv
+.output out.csv
+select datetime(last_visit_time/1000000-11644473600,'unixepoch') as 'date',url from  urls order by last_visit_time desc;
+!
+
+** TODO emacs [33%]
+*** spacemacs documentation : 11.1
+*** DONE emacs [100%]
 CLOSED: [2016-08-08 lun. 22:16]
-*** DONE bind [100%]
+**** DONE bind [100%]
 CLOSED: [2016-08-08 lun. 22:16]
-**** DONE org-insert-todo-subheading 
+***** DONE org-insert-todo-subheading 
 CLOSED: [2016-08-08 lun. 22:16]
-** TODO spacemacs online documentation [%]
-** DONE map avy goto-char to C-o
+*** TODO spacemacs online documentation [%]
+*** DONE map avy goto-char to C-o
 CLOSED: [2016-08-23 mar. 15:34]
-** TODO enable autocompletion for all buffers
+*** TODO enable autocompletion for all buffers
+*** TODO disable spell checking
+*** DONE check avy
+CLOSED: [2016-08-25 jeu. 15:22]
+
+| command                    | binding | status |
+| avy-goto-word-or-subword-1 |         | done   |
+| avy-goto-line              |         | done   |
+| spacemacs/avy-open-url     | M-m xo  |        |
+| avy-pop-mark               | M-m `   |        |
+*** TODO avy better indexing
+*** TODO org-mode: auto '[]'
+*** TODO export display
+
+~export DISPLAY=:0.0
+~
+** TODO tmux [%]
+*** TODO normal copy : also copy to system clipboard
