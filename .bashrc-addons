@@ -50,4 +50,7 @@ autojump --version 2> /dev/null ||
 log "setup hhighlighter"
 . $(dirname $(readlink -f ~/.bashrc-addons))/lib/hhighlighter/h.sh
 
+log "setup dockviz"
+alias dockviz="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
+
 . ./.bashrc-addons.local
