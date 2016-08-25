@@ -369,6 +369,7 @@ you should place your code here."
     "ht" 'org-insert-todo-subheading
     "hT" 'org-insert-todo-heading)
   (global-set-key (kbd "C-o") 'avy-goto-word-or-subword-1)
+  (setq projectile-switch-project-action 'projectile-dired)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
