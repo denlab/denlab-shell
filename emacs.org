@@ -25,7 +25,7 @@
 |                | org-table-toggle-coordinate-overlays    | C-c }                     |            |
 |                | recalculate table                       | C-u C-c C-c               |            |
 |                | org-table-edit-field                    | C-`                       |            |
-|                |                                         |                           |            |
+|                | org-toggle-link-display                 |                           |            |
 |----------------+-----------------------------------------+---------------------------+------------|
 | emacs          | spacemacs/describe-last-keys            | M-m h d l                 |            |
 |                | repeat last command                     | C-x z                     |            |
