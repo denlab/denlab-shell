@@ -46,6 +46,7 @@ log "setup java"
 log "setup autojump"
 autojump --version 2> /dev/null || 
     echo autojump not found! install with: sudo aptitude install autojump
+. /usr/share/autojump/autojump.sh
 
 log "setup hhighlighter"
 . $(dirname $(readlink -f ~/.bashrc-addons))/lib/hhighlighter/h.sh

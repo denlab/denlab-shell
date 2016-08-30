@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+EXCLUDE='
+8
+9
+84
+85
+'
+
+for i in {0..4096} 
+do
+    if ! echo "$EXCLUDE" | grep -q "^"${i}"$"
+    then
+        echo -ne ' \u'$i' '
+        # echo -ne $i='\u'$i
+        # echo $i not excluded
+    else
+        # echo $i excluded
+        :
+    fi
+done
