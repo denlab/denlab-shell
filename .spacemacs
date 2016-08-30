@@ -41,6 +41,7 @@ values."
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      (spell-checking :variables spell-checking-enable-auto-dictionary t)
+     (spell-checking :variables spell-checking-enable-by-default      nil)
      ;; syntax-checking
      )
    ;; List of additional packages that will be installed without being
