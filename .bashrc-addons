@@ -44,13 +44,7 @@ log "setup java"
 [ -n "$(which java)" ] && export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
 
 log "setup autojump"
-if ! autojump --version 2> /dev/null
-then
-    echo autojump doesnt seems to be installed, install with: sudo aptitude install autojump
-else
-    . /usr/share/autojump/autojump.sh
-fi
-
+autojump --version 2> /dev/null || echo autojump not found! install with: sudo aptitude install autojump
 
 log "setup hhighlighter"
 . $(dirname $(readlink -f ~/.bashrc-addons))/lib/hhighlighter/h.sh
