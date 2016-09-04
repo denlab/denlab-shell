@@ -1,0 +1,7 @@
+# -*-conf-unix-*-
+
+# pretty characters for graphs
+set line-graphics = utf-8
+
+# add sha1 to main view
+set main-view	= line-number:no,interval=5 id:no date:default author:full commit-title:yes,graph,refs,overflow=no
