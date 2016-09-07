@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euox pipefail
+IFS=$'\n\t'
+
+cd $(dirname $(readlink -f $0))
+
+while true; do
+    echo "time is now : $(date)"
+    sleep 1
+done
