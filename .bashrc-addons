@@ -40,6 +40,15 @@ unalias l
 alias em='emacsclient -nw'
 alias gl='git log --graph --all --oneline --decorate'
 
+log "setup some functions"
+function c() {
+    cd $1
+    l
+    hr
+    pwd | h '.'
+}
+
+
 log "setup java"
 [ -n "$(which java)" ] && export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
 
