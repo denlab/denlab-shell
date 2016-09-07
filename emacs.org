@@ -111,3 +111,16 @@ CLOSED: [2016-08-25 jeu. 15:22]
 ~
 ** TODO tmux [%]
 *** TODO normal copy : also copy to system clipboard
+
+* TODO cool tools to check [20%]
+
+** TODO pv : see progress in a pipe
+
+** DONE dstat: cool viewing of stast
+CLOSED: [2016-09-06 mar. 21:33]
+
+** TODO icdiff: side by side color diff
+
+** TODO HTTPie
+
+** TODO moreutils
