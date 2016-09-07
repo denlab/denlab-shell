@@ -1,2 +1,4 @@
-* TODO todo [0%]
-** TODO rename github project denlab-terminal -> denlab-shell
+* TODO todo [50%]
+** DONE rename github project denlab-terminal -> denlab-shell
+CLOSED: [2016-09-07 mer. 10:10]
+** TODO link all dot file automatiicaly
