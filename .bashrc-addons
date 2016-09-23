@@ -2,25 +2,25 @@
 
 LOG_INDENT=""
 
-function log_indent_inc() {
+log_indent_inc() {
     LOG_INDENT="$LOG_INDENT""\t"
 }
 
-function log_indent_dec() {
+log_indent_dec() {
     LOG_INDENT=$(echo "$LOG_INDENT" | sed 's/\(.*\).$/\1/g')
 }
 
-function log_begin() {
+log_begin() {
     echo -e "$LOG_INDENT""$1"
     log_indent_inc
 }
 
-function log_end() {
+log_end() {
     log_indent_dec
     echo -e "$LOG_INDENT""$1"
 }
 
-function log() {
+log() {
     echo -e "$LOG_INDENT""$1"
 }
 
@@ -35,12 +35,11 @@ path_add() {
 }
 
 log "go setup"
-export GOROOT=~/usr/local/go
+export GOROOT=$HOME/usr/local/go
 path_add "$GOROOT/bin"
 
 log "add bin to PATH"
 path_add "$HOME/bin"
-
 
 log "general env vars"
 export EDITOR='emacsclient -nw'
