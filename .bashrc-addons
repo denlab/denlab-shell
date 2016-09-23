@@ -26,17 +26,28 @@ function log() {
 
 log_begin "bashrc-addons"
 
+path_add() {
+    local p="$1"
+    if ! echo $PATH | tr ':' '\n' | grep -qx "$p"
+    then
+        export PATH=$PATH:"$p"
+    fi
+}
+
+log "go setup"
+export GOROOT=~/usr/local/go
+path_add "$GOROOT/bin"
+
 log "add bin to PATH"
-if [[ $PATH != *"$HOME/bin"* ]]
-then
-    export PATH=$PATH:"$HOME/bin"
-fi
+path_add "$HOME/bin"
+
 
 log "general env vars"
 export EDITOR='emacsclient -nw'
 
 log "setup aliases"
 unalias l
+unalias g
 alias em='emacsclient -nw'
 alias gl='git log --graph --all --oneline --decorate'
 
