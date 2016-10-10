@@ -45,17 +45,25 @@ log "general env vars"
 export EDITOR='emacsclient -nw'
 
 log "setup aliases"
-unalias l
-unalias g
+alias-rm() {
+    local a=$1
+    if alias | grep -q '^'$a'='
+    then
+        unalias $a
+    fi
+}
+alias-rm l
+alias-rm g
 alias em='emacsclient -nw'
 alias gl='git log --graph --all --oneline --decorate'
+alias dc='docker-compose'
 
 log "setup some functions"
-function c() {
+c() {
     cd $1
     l
-    hr
-    pwd | h '.'
+    hr '.'
+    # pwd | h '.'
 }
 
 
