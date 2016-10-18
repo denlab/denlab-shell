@@ -57,6 +57,7 @@ alias-rm g
 alias em='emacsclient -nw'
 alias gl='git log --graph --all --oneline --decorate'
 alias dc='docker-compose'
+alias xc='xclip -selection clipboard'
 
 log "setup some functions"
 c() {
