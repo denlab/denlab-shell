@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+cd $(dirname $(readlink -f $0))
+
+echo "\$#=$#"
+echo
+echo "\$0=$0"
+echo
+echo "\$*=\`$*\`"
+echo
+echo "\$@=\`$@\`"
+echo
+i=1
+
+
+expr='echo '
+expr="$expr"'$'
+expr="$expr""$i"
+echo $expr
+eval "$expr"
