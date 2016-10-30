@@ -4,6 +4,8 @@ IFS=$'\n\t'
 
 cd $(dirname $(readlink -f $0))
 
-SEARCH_STR=".*"$(echo $IN | sed 's/ /.*/g')".*"
+IN="$@"
 
-grep -i "$SEARCH_STR"
+SEARCH_STR=$(echo $IN | sed 's/ /.*/g')
+
+grep -i --color=always "$SEARCH_STR"
