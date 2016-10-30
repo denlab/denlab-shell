@@ -82,6 +82,8 @@ function echo-wait {
 
 CMD=${@-'./run.sh'}
 
+echo "Running: \"$CMD\""
+
 while true
 do
     set +e
