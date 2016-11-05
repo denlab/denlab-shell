@@ -45,13 +45,14 @@ log "general env vars"
 export EDITOR='emacsclient -nw'
 
 log "setup aliases"
+
 alias-rm() {
     local a=$1
-    if alias | grep -q '^'$a'='
-    then
+    if alias "$a" &> /dev/null ; then
         unalias $a
     fi
 }
+
 alias-rm l
 alias-rm g
 alias em='emacsclient -nw'
@@ -60,11 +61,14 @@ alias dc='docker-compose'
 alias xc='xclip -selection clipboard'
 
 log "setup some functions"
+
+l() {
+    ls --time-style=long-iso --color=always -altrhGb "$@"
+}
+
 c() {
-    cd $1
-    l
     hr '.'
-    # pwd | h '.'
+    cd $1 && l
 }
 
 
