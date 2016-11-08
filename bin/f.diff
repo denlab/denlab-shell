@@ -1,0 +1,112 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+. "$(dirname $(readlink -f $0))/colors.sh"
+
+start() {
+    declare -r -g tmpDir=$(mktemp -d)
+    trap 'finish $?' EXIT
+}
+
+finish() {
+    local exitcode=$?
+    echoInfo "TRAP EXIT ($exitcode)"
+    if [ -z ${tmpDir:+x} ]; then
+        echoInfo "tmpDir nod defined, nothing to do"
+    else
+        echoInfo "Removing tmpDir=$tmpDir ..."
+        rm -rf "$tmpDir"
+    fi
+}
+
+evalCmd() {
+    local name="$1" cmd="$2" outFile="$3"
+    local nameNum="cmd1"
+    if [[ "$name" == "b" ]]; then
+        nameNum="cmd2"
+    fi
+    set +e
+    echo "$cmd" >> $outFile
+    eval "$cmd" >> $outFile
+    local exitcode=$?
+    if [[ $exitcode -ne 0 ]];then
+        echoErr "
+ERROR! Problem while running $nameNum
+    - exitcode: $exitcode
+    - $nameNum: \`$cmd\`
+"
+        exit $exitcode
+    fi
+    set -e
+}
+
+run() {
+    declare -a diffCmd
+    if [[ "$#" -eq 3 ]]; then
+        diffCmd=( "$1" )
+        shift
+    else
+        diffCmd=( git --no-pager diff --color-words=. ) 
+    fi
+    local cmd1="$1" cmd2="$2"
+    # trap 'echo TRAP ERROR something wrong happened, errcode=$? 1>&2 ; finish' ERR
+    local a="$tmpDir/a"
+    local b="$tmpDir/b"
+    evalCmd "a" "$cmd1" "$a"
+    evalCmd "b" "$cmd2" "$b"
+    diffCmd+=( $a $b )
+    set +e
+    ${diffCmd[@]} 
+    local exitcode=$?
+    set -e
+    if [[ $exitcode -ne 0 ]] && [[ $exitcode -ne 1 ]]; then
+        echoErr "
+ERROR! Problem while diffing:
+    - exitcode: $exitcode
+    - diffcmd : \`${diffCmd[@]}\`
+"
+    fi
+}
+
+diffFiles_test() {
+    echoTitle "diffFiles_test"
+    local t=$tmpDir/main_test
+    mkdir $t
+    cd $t
+    echo a > a
+    echo b > b
+    f.diff "cat a" "cat b" || true
+}
+
+main_test() {
+    echoInfo "main_test($@)"
+    echoTitle "Wrong cmd1"
+    f.diff "cat cmd1" "echo b" || true
+    #
+    echoTitle "Wrong cmd2"
+    f.diff "echo a" "cat cmd2" || true
+    #
+    echoTitle "Wrong diff cmd"
+    f.diff nonexistentdiffcmd "echo a" "echo a" || true
+    #
+    echoTitle "good, no diff"
+    f.diff "echo a" "echo a" || true
+    #
+    echoTitle "good, with diff"
+    f.diff "echo a" "echo b" || true
+    #
+    diffFiles_test
+}
+
+main() {
+    echoInfoOn
+    start
+    if fnExists "$1"; then
+        "$@"
+    else
+        : ${2?"Usage: $0 <cmd1_to_compare> <to_cmd2>"}
+        run "$@"
+    fi
+}
+
+main "$@"
