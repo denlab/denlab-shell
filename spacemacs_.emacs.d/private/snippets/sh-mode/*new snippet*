@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: variableLocalSubs
+# key: varls
+# --
+local ${1:name}="$(${2:command})"
+$0echo "$name"

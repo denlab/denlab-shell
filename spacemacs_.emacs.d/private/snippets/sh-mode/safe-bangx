@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: safer bash settings for scripts debug
+# key: sx!
+# --
+#!/usr/bin/env bash
+set -euox pipefail
+IFS=$'\n\t'
+
+cd $(dirname $(readlink -f \$0))
+
+$0
