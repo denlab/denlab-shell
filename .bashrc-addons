@@ -34,6 +34,9 @@ path_add() {
     fi
 }
 
+log "lib path"
+export SH_LIB="$HOME/bin"
+
 log "go setup"
 export GOROOT=$HOME/usr/local/go
 path_add "$GOROOT/bin"
@@ -68,7 +71,7 @@ alias ll='less -JSIR'
 alias dc='docker-compose'
 alias xc='xclip -selection clipboard'
 alias gd^='git diff HEAD^..HEAD'
-alias gg='egrep --color=always'
+alias egc='egrep --color=always'
 
 log "setup some functions"
 
