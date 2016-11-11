@@ -79,15 +79,16 @@ echoErr() {
 
 log "check all home files are symlinked"
 declare -r dotToExclude='^\.git$'
-local allDotFiles="$(readlink -f .tmux.conf | xa dirname | xa ls -a | grep -e '^\.' | grep -v '^\.$' | grep -v '^\.\.$')"
-for i in $allDotFiles ; do
- #    if ! ls "$i" > /dev/null; then
-#         echoErr "WARN! "
-#         echoErr "    dot file $i is not symlinked in $HOME"
-#         echoErr "    cmd to fix: "
-#         echoErr "    cd ~ && ln -s $(readlink -f $i) ."
-#     fi
-# ;
+local allDotFiles="$(readlink -f .tmux.conf | xa dirname | xa ls -a | grep -e '^\.' | grep -v '^\.$' | grep -v '^\.\.$' | grep -v $dotToExclude)"
+for i in $(echo $allDotFiles) ; do
+    echo ">$i<"
+    if ! ls "$i" > /dev/null; then
+        echoErr "WARN! "
+        echoErr "    dot file $i is not symlinked in $HOME"
+        echoErr "    cmd to fix: "
+        echoErr "    cd ~ && ln -s $(readlink -f $i) ."
+    fi
+;
 done
 
 log "setup some functions"
