@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+cd $(dirname $(readlink -f $0))
 
 EXCLUDE='
 8
@@ -7,15 +11,46 @@ EXCLUDE='
 85
 '
 
-for i in {0..4096} 
-do
-    if ! echo "$EXCLUDE" | grep -q "^"${i}"$"
-    then
-        echo -ne ' \u'$i' '
-        # echo -ne $i='\u'$i
-        # echo $i not excluded
-    else
-        # echo $i excluded
-        :
-    fi
-done
+echoInfo() {
+    echo "$@" 1>&2
+}
+
+printInterval() {
+    echoInfo 'printInterval()'
+    local lower="$1" upper="$2"
+    printf "[0x%x, 0x%x]:'" $lower $upper
+    for ((i=$lower;i<=$upper;i++)); do
+        # printf "0x%x\n" "$i"
+        printf "\u$i "
+    done
+    echo "'"
+
+    # for i in {$lower..$upper} 
+    # do
+    #     echo $i 
+    # done
+    # for i in {$lower..$upper} 
+    # do
+    #     if ! echo "$EXCLUDE" | grep -q "^"${i}"$"
+    #     then
+    #         echo -ne ' \u'$i' '
+    #         # echo -ne $i='\u'$i
+    #         # echo $i not excluded
+    #     else
+    #         # echo $i excluded
+    #         :
+    #     fi
+    # done
+}
+
+main() {
+    echoInfo "main()"
+
+    # ! y
+    printInterval 0x15 0x4f
+    # printInterval 0x64 0x200
+    local i=9
+    printInterval 0x2"$i"00 0x2"$((i+1))"00
+}
+
+main "$@"
