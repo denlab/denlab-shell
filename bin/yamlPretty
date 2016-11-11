@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+cd $(dirname $(readlink -f $0))
+
+escapeEol() {
+   sed -e '
+: again
+/\\$/ {
+    N
+    s/\\\n//
+    t again
+}'  | sed -e 's/\\n/\n/g' 
+}
+
+escapeEol

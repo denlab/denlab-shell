@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+cd $(dirname $(readlink -f $0))
+
+echoerr() {
+    echo "$@" 1>&2
+}
+
+assertStrEq() {
+    local expected="$1" actual="$2"
+    if [[ "$expected" != "$actual" ]]; then
+        echoerr "assertStrEq FAILED
+  expected=$expected
+  but was: ${actual:-<empty>}
+" 
+        exit 1
+    fi
+}
+
+main_test() {
+    local a="$(echo '{"a": 1, "b": 2}' | main -c)"
+    local e='{a: 1, b: 2}'
+    assertStrEq "$e" "$a"
+    local a="$(echo '{"a": 1, "b": 2}' | main)"
+    local e='a: 1
+b: 2'
+    assertStrEq "$e" "$a"
+    echoerr "All tests OK"
+}
+
+format() {
+    local default_flow_style="$1"
+    python -c "import sys, yaml, json; yaml.safe_dump(json.load(sys.stdin), sys.stdout, default_flow_style=$default_flow_style)"
+}
+
+run() {
+    local default_flow_style
+    if [[ "$#" -eq 0 ]]; then
+        format "False"
+        return
+    fi
+    if [[ "$1" == "--compact-output" ]] || [[ "$1" == "-c" ]]; then
+        format "True"
+        return
+    fi
+    if [[ "$1" == "--run-tests" ]]; then
+        main_test
+        return
+    fi
+}
+
+main() {
+    run "$@"
+}
+
+main "$@"
