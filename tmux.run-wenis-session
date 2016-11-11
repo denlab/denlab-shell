@@ -1,0 +1,26 @@
+#!/bin/bash -xe
+
+# create new session "wenis-session" with the window "emacs"
+tmux new-session  -s wenis-session -n emacs -d
+# go to cljsta dir
+tmux send-keys    -t wenis-session 'cd ~/repo/wapi' C-m
+# fetch last version
+tmux send-keys    -t wenis-session 'git fetch --all' C-m
+# start emacs
+tmux send-keys    -t wenis-session 'emacs -e nrepl-jack-in -e server-mode' C-m
+# create a new window "terms"
+tmux new-window   -t wenis-session -n terms
+# split the "terms" window vertically
+tmux split-window -t wenis-session:terms -v -p 80
+# start glances in the pane 1 of the "terms" window
+tmux send-keys    -t wenis-session:terms.1 'glances' C-m
+# split the glances window
+tmux split-window -t wenis-session:terms.1 -h -p 35
+# go to the bottom pane
+tmux select-pane -t wenis-session:terms.2
+# go to wci dir
+tmux send-keys    -t wenis-session 'cd ~/repo/wci' C-m
+# git fetch --all
+tmux send-keys    -t wenis-session 'gf' C-m
+# finally join the session
+tmux attach -t wenis-session
