@@ -93,6 +93,28 @@ done
 
 log "setup some functions"
 
+newsh() {
+    : ${1? "
+
+Usage: $FUNCNAME <scriptname>
+
+"}
+    local script="$1"
+    if [[ -f "$script" ]]; then
+        echo -e $"\nERROR! $script already exists!\n"
+        return 1
+    fi
+    touch "$script"
+    chmod +x "$script"
+    {
+        cat <<EOF
+#!/usr/bin/env bash
+set -euox pipefail
+IFS=$'\n\t'
+EOF
+    } > "$script"
+}
+
 l() {
     ls --time-style=long-iso --color=always -altrhGb "$@"
 }
