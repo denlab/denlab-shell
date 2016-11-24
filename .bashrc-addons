@@ -72,6 +72,7 @@ alias dc='docker-compose'
 alias xc='xclip -selection clipboard'
 alias gd^='git diff HEAD^..HEAD'
 alias egc='egrep --color=always'
+alias eg='egrep'
 
 echoErr() {
     echo "$@" 1>&2
