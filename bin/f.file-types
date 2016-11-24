@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euox pipefail
+IFS=$'\n\t'
+
+find . -type f \
+    | grep -E -v '/.git/' \
+    | sed -r 's|^.*/([^/]+)$|\1|'  \
+    | sed -r 's|^.*\.([^\.]+)|\1|' \
+    | sort \
+    | uniq -c \
+    | sort -n -k1

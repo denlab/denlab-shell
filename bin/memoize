@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+echoInfo() {
+    echo "$@" 1>&2
+}
+
+cleanAll() {
+    echoInfo "Removing all cache ..."
+    if [[ -f "$HOME/.memoize" ]]; then
+        trash "$HOME/.memoize"
+    fi
+    echoInfo "Removing all cache DONE"
+}
+
+memoize() {
+    local cmd="$@"
+    local k="$(echo "$cmd" | sha1sum | cut -d' ' -f1)"
+    mkdir -p "$HOME/.memoize"
+    local baseDir="$HOME/.memoize/$k"
+    local exitCode
+    local hit
+    if ls $HOME/.memoize | grep -Fqx "$k"; then
+        hit=true
+        cat "$baseDir/out"
+        cat "$baseDir/err" 1>&2
+        exitCode="$(cat "$baseDir/exit")"
+    else
+        hit=false
+        mkdir -p "$baseDir"
+        echo "$cmd" > "$baseDir/cmd"
+        set +e
+        eval "$cmd" > "$baseDir/out" 2> "$baseDir/err"
+        exitCode=$?
+        set -e
+        echo $exitCode > "$baseDir/exit"
+        memoize "$@"
+    fi
+    return $exitCode
+}
+
+showHelp() {
+    echoInfo ""
+    echoInfo "Usage:"
+    echo "    $(basename $0); --clean-all ;# Remove all cache
+    $(basename $0); <command>   ;# If already in cache return cache, otherwise run cmd and cache result
+    $(basename $0); --help      ;# Show this msg" \
+         |  column -t -s';'
+    echoInfo ""
+}
+
+main() {
+    case "${1:-}" in
+        "")
+            showHelp
+            ;;
+        --clean-all)
+            cleanAll
+            ;;
+        --help)
+            showHelp
+            ;;
+        *) memoize "$@"
+           ;;
+    esac
+}
+
+main "$@"
