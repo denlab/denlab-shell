@@ -58,7 +58,6 @@ alias-rm() {
 
 alias-rm l
 alias-rm g
-alias em='emacsclient -nw'
 alias gl='git log --graph --all --oneline --decorate'
 alias gll="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all --stat --color"
 alias ll='less -JSIR'
