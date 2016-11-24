@@ -5,11 +5,11 @@ IFS=$'\n\t'
 cd $(dirname $(readlink -f $0))
 
 escapeEol() {
-   sed -e '
+    sed  '
 : again
 /\\$/ {
     N
-    s/\\\n//
+    s/\\\s*\n\s*\\//
     t again
 }'  | sed -e 's/\\n/\n/g' 
 }
