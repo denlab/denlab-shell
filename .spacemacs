@@ -372,6 +372,9 @@ you should place your code here."
     "hT" 'org-insert-todo-heading)
   (global-set-key (kbd "C-o") 'avy-goto-word-or-subword-1)
   (setq projectile-switch-project-action 'projectile-dired)
+  (fset 'align-docker
+        (lambda (&optional arg) "Keyboard macro." (interactive "p") 
+          (kmacro-exec-ring-item (quote ("hxalign-r	\\\\$ " 0 "%d")) arg)))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
