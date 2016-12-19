@@ -118,6 +118,9 @@ c() {
 log "setup java"
 [ -n "$(which java)" ] && export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
 
+log "setup groovy"
+groovy() { groovyclient "$@" ; }
+
 log "setup autojump"
 autojump --version 2> /dev/null || 
     echo autojump not found! install with: sudo aptitude install autojump
