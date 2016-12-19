@@ -58,6 +58,7 @@ alias-rm() {
 
 alias-rm l
 alias-rm g
+alias em='emacsclient -nw'
 alias gl='git log --graph --all --oneline --decorate'
 alias gll="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all --stat --color"
 alias ll='less -JSIR'
@@ -93,26 +94,15 @@ done
 
 log "setup some functions"
 
-newsh() {
-    : ${1? "
-
-Usage: $FUNCNAME <scriptname>
-
-"}
-    local script="$1"
-    if [[ -f "$script" ]]; then
-        echo -e $"\nERROR! $script already exists!\n"
-        return 1
+t.edit() {
+    : ${1?"Usage: $0 <filename (in $PATH) to edit>"}
+    local file="$1"
+    if which $file ; then
+        em "$(which $file)"
+    else
+        echoErr "Cannot find file $file in PATH"
+        exit 1
     fi
-    touch "$script"
-    chmod +x "$script"
-    {
-        cat <<EOF
-#!/usr/bin/env bash
-set -euox pipefail
-IFS=$'\n\t'
-EOF
-    } > "$script"
 }
 
 l() {

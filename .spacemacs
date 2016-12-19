@@ -37,6 +37,7 @@ values."
      version-control
      themes-megapack
      search-engine
+     clojure
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
