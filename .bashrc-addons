@@ -119,6 +119,7 @@ log "setup java"
 [ -n "$(which java)" ] && export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
 
 log "setup groovy"
+export GROOVY_HOME=/usr/share/groovy2
 groovy() { groovyclient "$@" ; }
 
 log "setup autojump"
