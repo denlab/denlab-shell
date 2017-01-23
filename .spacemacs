@@ -41,10 +41,9 @@ values."
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
-     (spell-checking :variables spell-checking-enable-auto-dictionary t)
-     (spell-checking :variables spell-checking-enable-by-default      nil)
-     ;; syntax-checking
-     )
+     (spell-checking :variables
+                     spell-checking-enable-auto-dictionary t
+                     spell-checking-enable-by-default      nil))
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
