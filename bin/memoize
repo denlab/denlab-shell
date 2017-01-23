@@ -6,41 +6,66 @@ echoInfo() {
     echo "$@" 1>&2
 }
 
-cleanAll() {
+memoize.cleanAll() {
     echoInfo "Removing all cache ..."
-    if [[ -f "$HOME/.memoize" ]]; then
-        trash "$HOME/.memoize"
+    if [[ -d "$HOME/.memoize" ]]; then
+        trash -v "$HOME/.memoize"
     fi
     echoInfo "Removing all cache DONE"
 }
 
-memoize() {
+echoVerbose() {
+    if $verbose; then
+        echoInfo "$progName> $@"
+    fi
+}
+
+echoVerboseWhenCacheMiss() {
+    echoInfo "$progName> $@"
+}
+
+memoize.memoize() {
     local cmd="$@"
+    declare -g verbose=true
+    declare -g verboseOpt=""
+    declare -g progName="$(basename $0 | tr -d './')"
+    if [[ "$1" == "-v" ]] || [[ "$1" == "--verbose" ]]; then
+        verbose=true
+        verboseOpt="-v"
+        shift
+    fi
+    echoVerbose "- cmd='$cmd'"
     local k="$(echo "$cmd" | sha1sum | cut -d' ' -f1)"
+    echoVerbose "- k='$k'"
     mkdir -p "$HOME/.memoize"
     local baseDir="$HOME/.memoize/$k"
     local exitCode
     local hit
     if ls $HOME/.memoize | grep -Fqx "$k"; then
+        echoVerbose "Cache hit"
         hit=true
         cat "$baseDir/out"
         cat "$baseDir/err" 1>&2
         exitCode="$(cat "$baseDir/exit")"
     else
+        echoVerbose "Cache miss"
         hit=false
         mkdir -p "$baseDir"
         echo "$cmd" > "$baseDir/cmd"
+        # echoVerbose "Running cmd: $cmd ..."
+        echoVerbose "$cmd" '>' "$baseDir/out" '2>' "$baseDir/err"
         set +e
-        eval "$cmd" > "$baseDir/out" 2> "$baseDir/err"
+        # eval "$cmd" > "$baseDir/out" 2> "$baseDir/err"
+        bash -c "$cmd > $baseDir/out 2> $baseDir/err"
         exitCode=$?
         set -e
         echo $exitCode > "$baseDir/exit"
-        memoize "$@"
+        memoize $verboseOpt "$@"
     fi
     return $exitCode
 }
 
-showHelp() {
+memoize.showHelp() {
     echoInfo ""
     echoInfo "Usage:"
     echo "    $(basename $0); --clean-all ;# Remove all cache
@@ -53,15 +78,15 @@ showHelp() {
 main() {
     case "${1:-}" in
         "")
-            showHelp
+            memoize.showHelp
             ;;
         --clean-all)
-            cleanAll
+            memoize.cleanAll
             ;;
         --help)
-            showHelp
+            memoize.showHelp
             ;;
-        *) memoize "$@"
+        *) memoize.memoize "$@"
            ;;
     esac
 }
