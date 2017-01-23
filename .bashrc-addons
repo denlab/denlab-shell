@@ -11,13 +11,13 @@ log_indent_dec() {
 }
 
 log_begin() {
-    echo -e "$LOG_INDENT""$1"
+    echo -e "$LOG_INDENT""> ""$1"
     log_indent_inc
 }
 
 log_end() {
     log_indent_dec
-    echo -e "$LOG_INDENT""$1"
+    echo -e "$LOG_INDENT""< ""$1"
 }
 
 log() {
@@ -82,7 +82,7 @@ log "check all home files are symlinked"
 declare -r dotToExclude='^\.git$'
 local allDotFiles="$(readlink -f .tmux.conf | xa dirname | xa ls -a | grep -e '^\.' | grep -v '^\.$' | grep -v '^\.\.$' | grep -v $dotToExclude)"
 for i in $(echo $allDotFiles) ; do
-    echo ">$i<"
+    # echo ">$i<"
     if ! ls "$i" > /dev/null; then
         echoErr "WARN! "
         echoErr "    dot file $i is not symlinked in $HOME"
@@ -129,5 +129,10 @@ autojump --version 2> /dev/null ||
 
 log "setup dockviz"
 alias dockviz="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
+
+log "composure"
+. $(readlink -f .tmux.conf | xa dirname)/lib/composure.sh
+
+log_end "bashrc-addons"
 
 . ./.bashrc-addons.local
