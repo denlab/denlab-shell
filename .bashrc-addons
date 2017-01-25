@@ -61,13 +61,6 @@ alias-rm g
 alias em='emacsclient -nw'
 alias gl='git log --graph --all --oneline --decorate'
 alias gll="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all --stat --color"
-alias ll='less -JSIR'
-#               ^^^^
-#               ||||
-#               |||+-- [R]aw ctrl chars (colors)
-#               ||+----- [i]gnore case in search (except if upper chars)
-#               |+-------- [S]hop long lines
-#               +----------- status column (on the left)
 alias dc='docker-compose'
 alias xc='xclip -selection clipboard'
 alias gd^='git diff HEAD^..HEAD'

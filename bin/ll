@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euox pipefail
+IFS=$'\n\t'
+
+less -JSIR
+#     ^^^^
+#     ||||
+#     |||+-- [R]aw ctrl chars (colors)
+#     ||+----- [i]gnore case in search (except if upper chars)
+#     |+-------- [S]hop long lines
+#     +----------- status column (on the left)
