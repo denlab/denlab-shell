@@ -29,8 +29,7 @@ h() {
         echo "usage: YOUR_COMMAND | h [-idn] args...
     -i : ignore case
     -d : disable regexp
-    -n : invert colors
-    -C : always color output"
+    -n : invert colors"
     }
 
     local _OPTS
@@ -42,12 +41,11 @@ h() {
     fi
 
     # manage flags
-    while getopts ":idnCQ" opt; do
+    while getopts ":idnQ" opt; do
         case $opt in
             i) _OPTS+=" -i " ;;
             d)  _OPTS+=" -Q " ;;
             n) n_flag=true ;;
-            C) _OPTS=" --color ";;
             Q)  _OPTS+=" -Q " ;;
                 # let's keep hidden compatibility with -Q for original ack users
             \?) _usage
