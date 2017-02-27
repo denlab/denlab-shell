@@ -18,6 +18,10 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     javascript
+     php
+     ruby
+     html
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -33,7 +37,7 @@ values."
      shell-scripts
      org
      ansible
-     dockerfile
+     docker
      version-control
      themes-megapack
      search-engine
@@ -49,7 +53,9 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(groovy-mode
-                                      jq-mode)
+                                      jq-mode
+                                      ox-twbs
+                                      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(company 
                                     org-bullets)
@@ -367,14 +373,19 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (set-face-background 'default "color-16")
   (global-auto-complete-mode)
-  ( spacemacs/set-leader-keys-for-major-mode 'org-mode
-    "ht" 'org-insert-todo-subheading
-    "hT" 'org-insert-todo-heading)
   (global-set-key (kbd "C-o") 'avy-goto-word-or-subword-1)
   (setq projectile-switch-project-action 'projectile-dired)
   (fset 'align-docker
         (lambda (&optional arg) "Keyboard macro." (interactive "p") 
           (kmacro-exec-ring-item (quote ("hxalign-r	\\\\$ " 0 "%d")) arg)))
+  (fset 'org-insert-todo-heading-cust
+        (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("ttitle [%]bbs f" 0 "%d")) arg)))
+  (fset 'org-insert-todo-subheading-cust
+        (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("*& * s[%]title bf b" 0 "%d")) arg)))
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "ht" 'org-insert-todo-subheading-cust
+    "hT" 'org-insert-todo-heading-cust)
+
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
