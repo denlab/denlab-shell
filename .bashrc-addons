@@ -57,6 +57,7 @@ alias-rm() {
 }
 
 alias-rm l
+alias-rm ll
 alias-rm g
 alias em='emacsclient -nw'
 alias gl='git log --graph --all --oneline --decorate'
