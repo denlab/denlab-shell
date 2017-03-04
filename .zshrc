@@ -94,3 +94,6 @@ setopt inc_append_history
 setopt share_history
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
+
+
+. ~/.zshrc-addons
