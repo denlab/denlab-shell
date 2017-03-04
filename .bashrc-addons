@@ -101,10 +101,6 @@ t.edit() {
     fi
 }
 
-l() {
-    ls --time-style=long-iso --color=always -altrhGb "$@"
-}
-
 c() {
     hr '.'
     cd $1 && l
