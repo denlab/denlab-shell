@@ -385,6 +385,8 @@ you should place your code here."
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "ht" 'org-insert-todo-subheading-cust
     "hT" 'org-insert-todo-heading-cust)
+  ;; enable org-babel code execution
+  (require 'ob-shell)
 
 )
 
