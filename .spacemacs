@@ -374,6 +374,12 @@ you should place your code here."
   (set-face-background 'default "color-16")
   (global-auto-complete-mode)
   (global-set-key (kbd "C-o") 'avy-goto-word-or-subword-1)
+  (global-set-key (kbd "M-m M-m l") 'hs-hide-level)
+  (global-set-key (kbd "M-m M-m H") 'hs-hide-all)
+  (global-set-key (kbd "M-m M-m S") 'hs-show-all)
+  (global-set-key (kbd "M-m M-m s") 'hs-show-block)
+  (global-set-key (kbd "M-m M-m h") 'hs-hide-block)
+
   (setq projectile-switch-project-action 'projectile-dired)
   (fset 'align-docker
         (lambda (&optional arg) "Keyboard macro." (interactive "p") 
