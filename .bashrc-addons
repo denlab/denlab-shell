@@ -70,6 +70,8 @@ alias egci='egrep -i --color=always'
 alias egi='egrep -i --color=auto'
 alias eg='egrep i --color=auto'
 alias jqi='jq -C'
+alias fzf='fzf --ansi'
+
 
 echoErr() {
     echo "$@" 1>&2
