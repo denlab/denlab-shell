@@ -399,6 +399,11 @@ you should place your code here."
     (let (org-log-done org-log-states)   ; turn off logging
       (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
   (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
+  ;; fn to make a comment line
+  (defun gui.cursor.curr-pos           ()  (string-to-number (first (last (split-string (what-cursor-position) "=")))))
+  (defun num.0-if-neg                  (n) (if (< n 0) 0 n))
+  (defun gui.write-dashes-until-80-col ()  (insert (make-string (num.0-if-neg (- 80 (gui.cursor.curr-pos))) ?-)))
+  (global-set-key (kbd "M-m x 8") (lambda () (interactive) (gui.write-dashes-until-80-col)))
   ;; enable org-babel code execution
   (require 'ob-shell)
 
