@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+. "$(dirname $(readlink -f $0))/util.sh"
+
+em.main() {
+    echo "$FUNCNAME($@)"
+    emacsclient -nw
+}
+
+[ "$0" == "$BASH_SOURCE" ] && em.main "$@"
