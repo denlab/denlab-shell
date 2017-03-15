@@ -71,31 +71,55 @@ function line-msg-left {
     MSG_SIZE=${#MSG}
     COL_NUM=$(tput cols)
     RIGHT_SIZE=$(($COL_NUM - $MSG_SIZE))
-    RIGHT=$(yes '-' | head -n $RIGHT_SIZE | tr -d '\n')
+    local lineChar='─'
+    lineChar='╍'
+    lineChar='═'
+    lineChar='╼'
+    lineChar='⑀'
+    lineChar='⑅'
+    lineChar='⬤'
+    lineChar='⯁'
+    lineChar='⬚'
+    lineChar='⬜'
+    lineChar='⬛'
+    RIGHT=$(yes "$lineChar" | head -n $RIGHT_SIZE | tr -d '\n')
     RESULT="$MSG$RIGHT"
-    echo "$RESULT"
+    echo "$RESULT" 
 }
 
 function echo-wait {
     line-msg-left "waiting for modications ..."
 }
 
-CMD=${@-'./run.sh'}
+# CMD=${@-'./run.sh'}
 
-echo "Running: \"$CMD\""
+# echo "Running: \"$CMD\""
 
-while true
-do
-    set +e
-    ${CMD}
-    RETURN_CODE=$?
-    if [[ $RETURN_CODE -eq 0 ]] # TODO could be simpler
-    then
-        echo "${CMD} Success!" | bold_green
-    else
-        echo "${CMD} Failure! return code=${RETURN_CODE}" | bold_red
-    fi
-    set -e
-    echo-wait
-    inotifywait -q -r -e close_write -e attrib -e move -e create -e delete --exclude '.*\.git.*|\.#.*' .
-done
+main() {
+    declare maxSec=5 retCodeTimeout=124
+    declare execWithTimeout=false
+    while true
+    do
+        echo 'Running: `'"bash -c $@"'`' 1>&2
+        set +e
+        if $execWithTimeout; then
+            timeout $maxSec bash -c "$@"
+        else
+            bash -c "$@"
+        fi
+        RETURN_CODE=$?
+        if [[ $RETURN_CODE -eq 0 ]] # TODO could be simpler
+        then
+            echo "${CMD} Success!" | bold_green
+        elif [[ $RETURN_CODE -eq $retCodeTimeout ]]; then
+            echo "${CMD} Timed out after $maxSec s ! return code=${RETURN_CODE}" | bold_red
+        else
+            echo "${CMD} Failure! return code=${RETURN_CODE}" | bold_red
+        fi
+        set -e
+        echo-wait
+        inotifywait -q -r -e close_write -e attrib -e move -e create -e delete --exclude '.*\.git.*|\.#.*' .
+    done
+}
+
+main "$@"
