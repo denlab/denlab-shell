@@ -15,8 +15,8 @@ memoize.cleanAll() {
 }
 
 echoVerbose() {
-    if $verbose; then
-        echoInfo "$progName> $@"
+    if "${verbose:-false}"; then
+        echoInfo "$progName""$@"
     fi
 }
 
@@ -24,51 +24,59 @@ echoVerboseWhenCacheMiss() {
     echoInfo "$progName> $@"
 }
 
+memoize.age() {
+    local file="$1"
+    shift 1
+    echo "$(date +%s) - $(stat ${file} --format=%Z)" | bc | x date -d@{} -u +%Hh%Mm%Ss
+#    echo "$(date +%s) - $(stat ${file} --format=%Z)" | bc | x date -d@{} -u  "+%Y year(s) %m month(s) %d day(s) %H hour %M mn  %S sec "
+
+}
+
 memoize.memoize() {
     local cmd="$@"
-    declare -g verbose=true
-    declare -g verboseOpt=""
     declare -g progName="$(basename $0 | tr -d './')"
-    if [[ "$1" == "-v" ]] || [[ "$1" == "--verbose" ]]; then
-        verbose=true
-        verboseOpt="-v"
-        shift
-    fi
-    echoVerbose "- cmd='$cmd'"
+    progName=''
+    echoVerbose "---"
+    echoVerbose "memoize:"
+    echoVerbose "  cmd: '$cmd'"
     local k="$(echo "$cmd" | sha1sum | cut -d' ' -f1)"
-    echoVerbose "- k='$k'"
+    echoVerbose "  k: '$k'"
     mkdir -p "$HOME/.memoize"
     local baseDir="$HOME/.memoize/$k"
     local exitCode
     local hit
     if ls $HOME/.memoize | grep -Fqx "$k"; then
-        echoVerbose "Cache hit"
+        echoVerbose "  hit: true"
+        echoVerbose "  cacheAge: $(memoize.age $HOME/.memoize/$k)"
         hit=true
         cat "$baseDir/out"
         cat "$baseDir/err" 1>&2
         exitCode="$(cat "$baseDir/exit")"
     else
-        echoVerbose "Cache miss"
+        echoVerbose "  hit: false"
         hit=false
         mkdir -p "$baseDir"
         echo "$cmd" > "$baseDir/cmd"
         # echoVerbose "Running cmd: $cmd ..."
-        echoVerbose "$cmd" '>' "$baseDir/out" '2>' "$baseDir/err"
+        echoVerbose '  cmdRecord: '"$cmd" '>' "$baseDir/out" '2>' "$baseDir/err"
         set +e
         # eval "$cmd" > "$baseDir/out" 2> "$baseDir/err"
         bash -c "$cmd > $baseDir/out 2> $baseDir/err"
         exitCode=$?
         set -e
         echo $exitCode > "$baseDir/exit"
-        memoize $verboseOpt "$@"
+        memoize "$@"
     fi
+    echoVerbose "..."
     return $exitCode
 }
 
 memoize.showHelp() {
     echoInfo ""
     echoInfo "Usage:"
-    echo "    $(basename $0); --clean-all ;# Remove all cache
+
+    echo "    $(basename $0); -v;# Verbose
+    $(basename $0); --clean-all ;# Remove all cache
     $(basename $0); <command>   ;# If already in cache return cache, otherwise run cmd and cache result
     $(basename $0); --help      ;# Show this msg" \
          |  column -t -s';'
@@ -79,6 +87,11 @@ main() {
     case "${1:-}" in
         "")
             memoize.showHelp
+            ;;
+        -v)
+            export verbose=true
+            shift 1
+            memoize "$@"
             ;;
         --clean-all)
             memoize.cleanAll
